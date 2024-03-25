@@ -68,6 +68,11 @@ namespace HybridWebView
             [SupportedOSPlatform("ios11.0")]
             public async void StartUrlSchemeTask(WKWebView webView, IWKUrlSchemeTask urlSchemeTask)
             {
+                
+                if (((HybridWebView)_webViewHandler.VirtualView).RemoteUri != null)
+                {
+                    return;
+                }
                 var url = urlSchemeTask.Request.Url?.AbsoluteString ?? "";
 
                 var responseData = await GetResponseBytes(url);

@@ -19,7 +19,7 @@ namespace HybridWebView
 
         private partial void NavigateCore(string url)
         {
-            using var nsUrl = new NSUrl(new Uri(AppOriginUri, url).ToString());
+            using var nsUrl = new NSUrl(new Uri( RemoteUri ?? AppOriginUri, url).ToString());
             using var request = new NSUrlRequest(nsUrl);
 
             PlatformWebView.LoadRequest(request);

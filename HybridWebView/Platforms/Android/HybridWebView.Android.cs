@@ -35,7 +35,7 @@ namespace HybridWebView
 
         private partial void NavigateCore(string url)
         {
-            PlatformWebView.LoadUrl(new Uri(AppOriginUri, url).ToString());
+            PlatformWebView.LoadUrl(new Uri(  RemoteUri ?? AppOriginUri, url).ToString());
         }
 
         private sealed class HybridWebViewJavaScriptInterface : Java.Lang.Object

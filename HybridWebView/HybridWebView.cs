@@ -23,6 +23,9 @@ namespace HybridWebView
         ///  files are located in "ProjectFolder/Resources/Raw/hybrid_root", then set this property to "hybrid_root".
         /// </summary>
         public string? HybridAssetRoot { get; set; }
+        
+        
+        public Uri? RemoteUri { get; set; }
 
         /// <summary>
         /// The target object for JavaScript method invocations. When an "invoke" message is sent from JavaScript,

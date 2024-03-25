@@ -16,12 +16,16 @@ namespace HybridWebView
         }
         public override WebResourceResponse? ShouldInterceptRequest(AWebView? view, IWebResourceRequest? request)
         {
+            if (((HybridWebView)_handler.VirtualView).RemoteUri != null)
+            {
+                return base.ShouldInterceptRequest(view, request);
+            }
             var fullUrl = request?.Url?.ToString();
             var requestUri = QueryStringHelper.RemovePossibleQueryString(fullUrl);
 
             var webView = (HybridWebView)_handler.VirtualView;
 
-            if (new Uri(requestUri) is Uri uri && HybridWebView.AppOriginUri.IsBaseOf(uri))
+            if ( new Uri(requestUri) is Uri uri && HybridWebView.AppOriginUri.IsBaseOf(uri))
             {
                 var relativePath = HybridWebView.AppOriginUri.MakeRelativeUri(uri).ToString().Replace('/', '\\');
 
